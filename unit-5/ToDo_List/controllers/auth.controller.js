@@ -29,4 +29,31 @@ router.post("./register", (req, res) => {
     }
 });
 
+router.get("/query/", (req, res) => {
+    console.log(req.query);
+    /* 
+        - Anything after the endpoint can be extracted.
+        ex: /todo/query/?firstName=Marcel
+    */
+
+    try {
+        const { firstName, lastName, email, password } = req.query;
+        // console.log(firstName, lastName);
+
+        res.status(200).json({
+            status: "User created",
+            results: {
+                first: firstName,
+                last: lastName,
+                email: email,
+                password: password,
+            },
+        });
+    } catch (err) {
+        res.status(500).send(
+            `<img src="https://http.cat/404" alt="status code 404"/>`
+        );
+    }
+});
+
 module.exports = router;

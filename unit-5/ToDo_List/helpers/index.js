@@ -1,6 +1,6 @@
 function logTime(req, res, next) {
     // console.log("In logtime", req);
-    console.log("Before Date: ", req.datePosted);
+    // console.log("Before Date: ", req.datePosted);
     let date = new Date();
     req.datePosted = date.toLocaleDateString(); // creating a string for our local date
 
