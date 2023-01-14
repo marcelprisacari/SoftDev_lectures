@@ -59,3 +59,15 @@ This provides us access to JSON throughout our routes.
     -   Request
     -   Response
     -   Next
+
+## CORS
+
+-   Cross Origin Origin REsource Sharing
+    -   preflight
+        -   Checks to see if your request is available
+        -   If headers don't match in our requests, it can throw an error
+        -   Adding this dependency is to help resolve any of those issues.
+-   Dependency
+    -   stop server and install as a dependency
+    -   `npm i cors`
+    -   import within `app.js` above `routes`
