@@ -62,7 +62,7 @@ This provides us access to JSON throughout our routes.
 
 ## CORS
 
--   Cross Origin Origin REsource Sharing
+-   Cross Origin Resource Sharing
     -   preflight
         -   Checks to see if your request is available
         -   If headers don't match in our requests, it can throw an error
