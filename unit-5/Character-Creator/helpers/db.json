@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "name": "Jerry",
+    "classType": "wizard",
+    "age": 97,
+    "race": "Elf",
+    "npc": false,
+    "level": 0
+}
