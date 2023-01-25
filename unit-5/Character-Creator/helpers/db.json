@@ -1,4 +1,5 @@
-{
+[
+    {
     "id": 1,
     "name": "Jerry",
     "classType": "wizard",
@@ -7,3 +8,4 @@
     "npc": false,
     "level": 0
 }
+]
