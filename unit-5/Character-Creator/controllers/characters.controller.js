@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const db = require("../helpers/db.json");
+const fs = require("fs");
+const { Cipher } = require("crypto");
+const fsPath = "./helpers/db.json";
 
 // GET All
 router.get("/get-all", (req, res) => {
@@ -69,20 +72,28 @@ router.get("/class/:class", (req, res) => {
 
 // POST one
 router.post("/new-character", (req, res) => {
-    const { name, classType, age, race, npc } = req.body;
-
-    const obj = {
-        id: db.length + 1,
-        name: name,
-        classType: classType,
-        age: age,
-        race: race,
-        npc: npc,
-        level: 0,
-    };
-
     try {
-        db.push(obj);
+        const { name, classType, age, race, npc } = req.body;
+
+        const obj = {
+            id: db.length + 1,
+            name: name,
+            classType: classType,
+            age: age,
+            race: race,
+            npc: npc,
+            level: 0,
+        };
+
+        fs.readFile("./helpers/db.json", (err, data) => {
+            if (err) throw err;
+
+            const db = JSON.parse(data);
+            db.push(obj);
+            // console.log(db);
+
+            fs.writeFile(fsPath, JSON.stringify(db), (err) => console.log(err));
+        });
 
         res.status(200).json({
             message: `New Character Created!`,
@@ -96,7 +107,84 @@ router.post("/new-character", (req, res) => {
 });
 
 // PUT One by ID
+router.put("/:id", (req, res) => {
+    try {
+        //1. Grab ID value
+        const id = Number(req.params.id);
+
+        //2. Consider what is the new data within the body
+        const { name, classType, age, race, npc, level } = req.body;
+
+        //3. Detail those updates (in an obj)
+        const updatedObj = {
+            id,
+            name,
+            classType,
+            age,
+            race,
+            npc,
+            level,
+        };
+
+        //4. Locate our DB
+        fs.readFile(fsPath, (err, data) => {
+            if (err) throw err;
+
+            const database = JSON.parse(data);
+
+            //5. Locate our document & change it
+            database.forEach((obj, i) => {
+                if (obj.id === id) {
+                    database[i] = updatedObj;
+                }
+            });
+
+            //6. Update our DB
+            fs.writeFile(fsPath, JSON.stringify(database), (err) =>
+                console.log(err)
+            );
+        });
+
+        res.status(200).json({
+            message: `Character updated!`,
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: err.message,
+        });
+    }
+});
 
 // DELETE by ID
+router.delete("/:id", (req, res) => {
+    try {
+        //1. Find out what ID we need
+        const id = Number(req.params.id);
+        console.log(id);
+
+        //2. Locate our database
+        fs.readFile(fsPath, (err, data) => {
+            if (err) throw err;
+
+            const db = JSON.parse(data);
+        });
+        //3. Locate our Document and Remove it
+        const keptDocuments = db.filter((i) => i.id != id);
+
+        //4. Update database with current list
+        fs.writeFile(fsPath, JSON.stringify(keptDocuments), (err) =>
+            console.log(err)
+        );
+
+        //5. Respond to the Client
+        res.status(200).json({
+            message: `Character has been deleted`,
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: err.message,
+        });
+    }
+});
 
 module.exports = router;

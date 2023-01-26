@@ -61,14 +61,14 @@ This is an in-class build where we are creating a quick server that covers the C
 |x| Build GET One |`filter()` / `every()`|
 |x| Test Route | postman |
 |x| Build GET All by Class |`forEach()` / `filter()`|
-|x| Consider conditions |`toLowerCase()`|
-| | Test Route |  |
-| | Build POST One |  |
-| | Test Route |  |
-| | Build PUT One by ID |  |
-| | Test Route |  |
-| | Build DELETE One by ID | |
-| | Test Route |  |
+|X| Consider conditions | `toLowerCase()` |
+|X| Test Route | postman |
+|X| Build POST One | `readFile()` & `writeFile()`  |
+|X| Test Route | postman |
+|x| Build PUT One by ID | `forEach((obj,id) => {})` |
+|x| Test Route | postman |
+|x| Build DELETE One by ID |`filter(i => i.id !== id)`|
+|x| Test Route | postman |
 
 ## Stretch Goals
 | Stretch Goals | Status |

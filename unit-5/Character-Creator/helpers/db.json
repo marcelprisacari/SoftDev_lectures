@@ -1,11 +1,1 @@
-[
-    {
-    "id": 1,
-    "name": "Jerry",
-    "classType": "wizard",
-    "age": 97,
-    "race": "Elf",
-    "npc": false,
-    "level": 0
-}
-]
+[{"id":2,"name":"Ralph","classType":"wizard","age":97,"race":"Elf","npc":false,"level":0},{"id":3,"name":"Larry","classType":"bard","age":11,"race":"Halfling","npc":false},{"id":4,"name":"Larry","classType":"Bard","age":111,"race":"Halfling","npc":false,"level":0}]
