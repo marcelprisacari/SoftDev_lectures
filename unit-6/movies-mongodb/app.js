@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const userController = require("./controllers/user.controller.js");
+const movieController = require("./controllers/movie.controller");
 const mongoose = require("mongoose"); // used from node_modules
 const DBURL = process.env.DBURL;
 
@@ -15,5 +16,6 @@ db.once("open", () => console.log(`Connected: ${DBURL}`)); // event listener to 
 
 app.use(express.json());
 app.use("/user", userController);
+app.use("/movie", movieController);
 
 app.listen(PORT, () => console.log(`Movie server running on Port: ${PORT}`));
