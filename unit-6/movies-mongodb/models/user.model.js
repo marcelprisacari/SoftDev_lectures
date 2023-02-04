@@ -4,20 +4,20 @@ const UserSchema = new mongoose.Schema({
     //columns for our document
     firstName: {
         type: String, // What data type this is expecting
-        require: true,
+        required: true,
     },
     lastName: {
         type: String,
-        require: true,
+        required: true,
     },
     email: {
         type: String,
-        require: true,
+        required: true,
         unique: true, // duplicate emails will throw an error response
     },
     password: {
         type: String,
-        require: true,
+        required: true,
     },
     passwordCheck: String,
 });
