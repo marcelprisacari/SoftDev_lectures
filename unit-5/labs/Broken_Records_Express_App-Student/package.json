@@ -1,7 +1,7 @@
 {
   "name": "broken-records",
   "version": "1.0.0",
-  "description": "",
+  "description": "This debug challenge is to provide practice in finding all the break points of a functioning express application. This is meant to tested through **Postman** and should result in either updating the local json file associated with the mock database or updating documents within [MongoDB](https://www.mongodb.com/).",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -134,7 +134,7 @@ router.delete("/:id", async (req, res) => {
             const db = JSON.parse(data);
             console.log(db.length);
             const keptRecords = db.filter((i) => i.id != id);
-            // console.log(keptRecords);
+            console.log(keptRecords);
 
             fs.writeFile(fsPath, JSON.stringify(keptRecords), (err) =>
                 console.log(err)

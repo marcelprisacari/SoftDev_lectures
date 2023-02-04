@@ -1,18 +1,18 @@
 //* This whole file is for Unit 6 Challenge
-const router = require("express");
+const router = require("express").Router();
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const secret = process.env;
+const secret = process.env.PORT;
 const expire = { expiresIn: 60 * 60 * 2 };
 
-router.create("/signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
     try {
         let { userName, email, password } = req.body;
 
         const user = new User({
             userName: userName,
-            email: emails,
+            email: email,
             password: bcrypt(password, 10),
         });
 

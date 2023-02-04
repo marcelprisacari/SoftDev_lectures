@@ -3,12 +3,12 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose"); //* Unit 6
 const PORT = process.env.PORT || 4002;
-const MONGO = process.MONGO; //* Unit 6
+const DBURL = process.env.DBURL; //* Unit 6
 
-const user = require("../controllers/user.controller"); //* Unit 6
+const userController = require("./controllers/user.controller"); //* Unit 6
 const routeController = require("./controllers/routes.controller");
 
-mongoose.connect(`${MONGO}/broken_records`); //* Unit 6
+mongoose.connect(`${DBURL}/broken_records`); //* Unit 6
 const mongodb = mongoose.connection; //* Unit 6
 
 mongodb.once("open", () => console.log("Connected to Mongo")); //* Unit 6
