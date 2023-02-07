@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-    //columns for our document
+    // columns for our document
     firstName: {
         type: String, // What data type this is expecting
         required: true,
@@ -13,13 +13,13 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true, // duplicate emails will throw an error response
+        unique: true, // duplicate emails will throw an error response.
     },
     password: {
         type: String,
         required: true,
     },
-    passwordCheck: String,
+    // passwordCheck: String
 });
 
 // Need to export our model

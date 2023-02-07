@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Movie = require("../models/movie.model");
+const validateSession = require("../middleware/validate-session");
 
 // Error Response Function
 const errorResponse = (res, error) => {
@@ -9,7 +10,7 @@ const errorResponse = (res, error) => {
 };
 
 //TODO POST
-router.post("/", async (req, res) => {
+router.post("/", validateSession, async (req, res) => {
     try {
         //1. Pull data from client (body)
         const { title, genre, rating, length, releaseYear } = req.body;
@@ -21,6 +22,7 @@ router.post("/", async (req, res) => {
             rating,
             length,
             releaseYear,
+            owner_id: req.user._id,
         });
 
         //3. Use mongoose method to save to MongoDB
@@ -81,7 +83,7 @@ router.get("/:id", async (req, res) => {
         
         Hint: parameters within method are optional
 */
-router.get("/", async (req, res) => {
+router.get("/", validateSession, async (req, res) => {
     try {
         const movies = await Movie.find();
 
@@ -148,17 +150,20 @@ router.get("/genre/:genre", async (req, res) => {
 });
 
 //TODO PATCH One
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", validateSession, async (req, res) => {
     try {
         //1. Pull value from parameter
-        const { id } = req.params;
+        // const { id } = req.params;
+        const filter = { _id: req.params.id, owner_id: req.user._id };
+
         //2. Pull data from the body
         const info = req.body;
         //3. Use method to locate document off ID and pass in new info.
         const returnOption = { new: true };
 
+        // const updated = await Movie.findOneAndUpdate({_id: id}, info, returnOption);
         const updated = await Movie.findOneAndUpdate(
-            { _id: id },
+            filter,
             info,
             returnOption
         );
@@ -179,14 +184,14 @@ router.patch("/:id", async (req, res) => {
 });
 
 //TODO DELETE One
-
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", validateSession, async (req, res) => {
     try {
         //1. Capture ID
-        const { id } = req.params;
+        // const { id } = req.params;
+        const filter = { _id: req.params.id, owner_id: req.user._id };
 
         //2. Use a delete method to locate and removes base off the ID
-        const deleteMovie = await Movie.deleteOne({ _id: id });
+        const deleteMovie = await Movie.deleteOne(filter);
         console.log(deleteMovie);
 
         //3. Response
