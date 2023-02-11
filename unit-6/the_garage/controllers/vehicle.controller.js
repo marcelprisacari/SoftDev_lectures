@@ -4,7 +4,6 @@ const { error, success, incomplete } = require("../helpers");
 
 //! CREATE
 router.post("/", async (req, res) => {
-    
     try {
         const { make, model, year, color } = req.body;
 
@@ -23,6 +22,25 @@ router.post("/", async (req, res) => {
         newVehicle ? success(res, newVehicle) : incomplete(res);
     } catch (err) {
         error(res, err);
+    }
+});
+
+//! GET ALL
+/* 
+! Challenge
+    - Create a GET route that retrieves all vehciles in our vehicle collection.
+        - May need to create a few more vehicles for testing.
+    - Must be in a try/catch
+    - Utilize the helper functions imported to handle the responses.
+*/
+
+router.get("/", async (req, res) => {
+    try {
+        const cars = await Vehicle.find();
+
+        cars ? success(res, cars) : incomplete(res);
+    } catch (err) {
+        errorResponse(res, err);
     }
 });
 
