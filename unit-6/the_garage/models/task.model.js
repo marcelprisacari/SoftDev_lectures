@@ -10,3 +10,5 @@ const Task = new mongoose.Schema({
         ref: "Vehicle",
     },
 });
+
+module.exports = mongoose.model("Task", Task);

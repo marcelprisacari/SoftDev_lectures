@@ -14,15 +14,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //! Routes
-
 app.use("/vehicle", vehicleController);
 app.use("/task", taskController);
 
 //! Connection
-
 const server = async () => {
     db();
-    app.listen(PORT, () => console.log(`Server is running on Port: ${PORT}`));
+
+    app.listen(PORT, () => console.log(`Server Running on Port: ${PORT}`));
 };
 
 server();

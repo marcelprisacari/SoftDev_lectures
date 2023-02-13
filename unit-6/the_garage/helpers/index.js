@@ -11,7 +11,7 @@ const successResponse = (res, results) => {
 };
 
 const incompleteResponse = (res) => {
-    return res.status(404).send("Record could not be added.");
+    return res.status(404).send("Record was unable to be added.");
 };
 
 module.exports = {

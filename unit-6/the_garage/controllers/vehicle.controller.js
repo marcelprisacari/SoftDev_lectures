@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     try {
         const { make, model, year, color } = req.body;
 
-        if (!make) throw new Error(`Please input a vehicle make.`);
+        if (!make) throw new Error("Please input a vehicle make.");
 
         const vehicle = new Vehicle({
             make,
@@ -17,7 +17,6 @@ router.post("/", async (req, res) => {
         });
 
         const newVehicle = await vehicle.save();
-        console.log(newVehicle);
 
         newVehicle ? success(res, newVehicle) : incomplete(res);
     } catch (err) {
@@ -36,11 +35,11 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
     try {
-        const cars = await Vehicle.find();
+        const vehciles = await Vehicle.find();
 
-        cars ? success(res, cars) : incomplete(res);
+        vehciles ? success(res, vehciles) : incomplete(res);
     } catch (err) {
-        errorResponse(res, err);
+        error(res, err);
     }
 });
 
