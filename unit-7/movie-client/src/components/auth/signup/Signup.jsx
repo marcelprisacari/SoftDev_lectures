@@ -1,12 +1,15 @@
 import React, { useState, useRef } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
+import FullButton from "../../button/FullButton";
+import { useNavigate } from "react-router-dom";
 
-function Signup() {
+function Signup({ updateToken }) {
     // const [ firstName, setFirstName ] = useState('');
     const firstNameRef = useRef();
     const lastNameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -40,7 +43,14 @@ function Signup() {
             const res = await fetch(url, requestOptions);
             const data = await res.json();
 
-            console.log(data);
+            // console.log(data);
+
+            if (data.user) {
+                updateToken(data.token);
+                navigate("/movie");
+            } else {
+                alert("User not added.");
+            }
         } catch (err) {
             console.error(err);
         }
@@ -74,9 +84,11 @@ function Signup() {
                         autoComplete="off"
                     />
                 </FormGroup>
-                <Button type="submit" color="dark">
-                    Signup
-                </Button>
+                <FullButton>
+                    <Button type="submit" color="dark">
+                        Signup
+                    </Button>
+                </FullButton>
             </Form>
         </>
     );
