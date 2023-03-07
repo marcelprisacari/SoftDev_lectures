@@ -2,6 +2,7 @@ import "./App.css";
 import Auth from "./components/auth/Auth";
 import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import MovieIndex from "./components/movie/MovieIndex";
 
 function App() {
     const [sessionToken, setSessionToken] = useState("");
@@ -25,7 +26,7 @@ function App() {
                 <Route path="/" element={<Auth updateToken={updateToken} />} />
                 <Route
                     path="/movie"
-                    element={<h2>Movie Section Placeholder</h2>}
+                    element={<MovieIndex token={sessionToken} />}
                 />
             </Routes>
         </div>

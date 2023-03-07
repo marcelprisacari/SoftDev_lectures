@@ -17,7 +17,7 @@
 
 # Starting a React App
 
-`npx create-react-app .` or `npx create-react-app aoo-name`
+`npx create-react-app .` or `npx create-react-app app-name`
 
 -   "." indicates the folder as the project name
 -   "app-name" will generate a new folder with the project details within it.
