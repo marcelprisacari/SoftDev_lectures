@@ -39,10 +39,17 @@ function MovieIndex(props) {
             <Container>
                 <Row>
                     <Col md="4">
-                        <MovieCreate token={props.token} />
+                        <MovieCreate
+                            token={props.token}
+                            fetchMovies={fetchMovies}
+                        />
                     </Col>
                     <Col md="8">
-                        <MovieTable movies={movies} />
+                        <MovieTable
+                            fetchMovies={fetchMovies}
+                            token={props.token}
+                            movies={movies}
+                        />
                     </Col>
                 </Row>
             </Container>
